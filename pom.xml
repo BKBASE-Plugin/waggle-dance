@@ -9,7 +9,7 @@
 
   <groupId>com.hotels</groupId>
   <artifactId>waggle-dance-parent</artifactId>
-  <version>3.9.8</version>
+  <version>${reversion}</version>
   <packaging>pom</packaging>
   <name>Waggle Dance Parent</name>
   <description>Hive Metastore federation service.</description>
@@ -34,6 +34,7 @@
   </modules>
 
   <properties>
+    <reversion>v3.9.8-bkbase</reversion>
     <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
     <spring-boot.version>2.0.4.RELEASE</spring-boot.version>
     <hadoop.version>2.7.2</hadoop.version>
