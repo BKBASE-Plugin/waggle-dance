@@ -171,16 +171,7 @@ public class StaticDatabaseMappingService implements MappingEventListener {
 
   private void validateFederatedMetastoreDatabases(List<String> mappableDatabases, MetaStoreMapping metaStoreMapping) {
     try {
-      Set<String> allPrimaryDatabases = Sets.newHashSet(primaryDatabasesCache.get(PRIMARY_KEY));
       for (String database : mappableDatabases) {
-        if (allPrimaryDatabases.contains(database.toLowerCase(Locale.ROOT))) {
-          throw new WaggleDanceException("Database clash, found '"
-              + database
-              + "' to be mapped for the federated metastore '"
-              + metaStoreMapping.getMetastoreMappingName()
-              + "' already present in the primary database, please remove the database from the list it can't be"
-              + " accessed via Waggle Dance");
-        }
         if (mappingsByDatabaseName.containsKey(database.toLowerCase(Locale.ROOT))) {
           throw new WaggleDanceException("Database clash, found '"
               + database
@@ -190,7 +181,7 @@ public class StaticDatabaseMappingService implements MappingEventListener {
               + " be accessed via Waggle Dance");
         }
       }
-    } catch (ExecutionException e) {
+    } catch (Exception e) {
       throw new WaggleDanceException("Can't validate database clashes", e.getCause());
     }
   }
